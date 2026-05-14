@@ -1,6 +1,8 @@
-# 📊 Análise de Dados de Vendas com Python
+# 📊 Sistema de Análise de Vendas com Interface Gráfica
 
-Projeto desenvolvido em Python para realizar a leitura de uma planilha Excel e gerar um resumo das quantidades vendidas por produto utilizando a biblioteca `pandas`.
+Projeto desenvolvido em Python com interface moderna utilizando `CustomTkinter` para realizar a leitura e análise de dados de uma planilha Excel.
+
+O sistema agrupa os produtos vendidos e exibe as quantidades totais de maneira organizada e visual.
 
 ---
 
@@ -8,7 +10,20 @@ Projeto desenvolvido em Python para realizar a leitura de uma planilha Excel e g
 
 - Python
 - Pandas
+- CustomTkinter
+- OpenPyXL
 - Excel (.xlsx)
+
+---
+
+## 🖥️ Interface do Sistema
+
+O sistema possui uma interface gráfica moderna com:
+
+- Tema escuro
+- Botões personalizados
+- Exibição organizada dos resultados
+- Leitura automática da planilha Excel
 
 ---
 
@@ -26,32 +41,30 @@ Projeto desenvolvido em Python para realizar a leitura de uma planilha Excel e g
 ## 📌 Funcionalidades
 
 - Leitura de arquivos Excel
+- Interface gráfica moderna
 - Agrupamento de dados por:
   - ID do Produto
   - Nome do Produto
-- Soma total da quantidade vendida
-- Exibição formatada dos resultados no terminal
+- Soma total das quantidades vendidas
+- Exibição formatada dos resultados na tela
+- Tratamento de erros durante a leitura da planilha
 
 ---
 
-## 🧠 Código utilizado
+## 🧠 Código principal
 
 ```python
-# Autor: Elcio Mello
-# Projeto: Análise de dados de Excel
+# Ler planilha
+planilha = pd.read_excel("vendas.xlsx")
 
-# Import do pandas
-import pandas as pd
+# Agrupar dados
+resultado = planilha.groupby(
+    ["ID_Produto", "Nome_Produto"]
+)["Quantidade_Vendida"].sum()
 
-# Ler a planilha do Excel
-planilha = pd.read_excel('vendas.xlsx')
-
-# Agrupar os registros por nome
-resultado = planilha.groupby(["ID_Produto", "Nome_Produto"])["Quantidade_Vendida"].sum()
-
-# Loop para exibir os resultados
+# Exibir resultados
 for (produto, nome), quantidade in resultado.items():
-    print(f"Produto: {produto} | Nome do Produto: {nome} | Quantidade Vendida: {quantidade}")
+    print(produto, nome, quantidade)
 ```
 
 ---
@@ -60,19 +73,19 @@ for (produto, nome), quantidade in resultado.items():
 
 ### 1️⃣ Instale o Python
 
-Baixe em: https://www.python.org
+https://www.python.org
 
 ---
 
 ### 2️⃣ Instale as bibliotecas necessárias
 
 ```bash
-pip install pandas openpyxl
+pip install pandas openpyxl customtkinter
 ```
 
 ---
 
-### 3️⃣ Execute o projeto
+### 3️⃣ Execute o sistema
 
 ```bash
 python analise_vendas.py
@@ -80,13 +93,29 @@ python analise_vendas.py
 
 ---
 
-## 📊 Exemplo de saída
+## 📊 Exemplo de funcionamento
 
 ```bash
-Produto: 101 | Nome do Produto: Mouse Gamer | Quantidade Vendida: 25
-Produto: 102 | Nome do Produto: Teclado Mecânico | Quantidade Vendida: 18
-Produto: 103 | Nome do Produto: Headset | Quantidade Vendida: 12
+Produto: 101
+Nome: Mouse Gamer
+Quantidade Vendida: 25
+----------------------------------------
+
+Produto: 102
+Nome: Teclado Mecânico
+Quantidade Vendida: 18
 ```
+
+---
+
+## 🎯 Objetivo do projeto
+
+Este projeto foi desenvolvido com o objetivo de praticar:
+
+- Manipulação de dados com Pandas
+- Leitura de arquivos Excel
+- Desenvolvimento de interfaces gráficas em Python
+- Organização e apresentação de dados
 
 ---
 
