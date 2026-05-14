@@ -1,0 +1,16 @@
+# Autor: Elcio Mello
+# Projeto: Análise de dados de Excel
+
+# Import do pandas
+import pandas as pd
+
+# Ler a planilha do Excel
+planilha = pd.read_excel('vendas.xlsx')
+
+# Agrupar os registros por nome
+resultado = planilha.groupby(["ID_Produto", "Nome_Produto"])["Quantidade_Vendida"].sum()
+
+# Loop para exibir os resultados
+
+for (produto, nome), quantidade in resultado.items():
+    print(f"Produto: {produto} | Nome do Produto: {nome} | Quantidade Vendida: {quantidade}")
